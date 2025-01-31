@@ -29,7 +29,7 @@ function App() {
 
 
   useEffect(() => {
-    console.warn("USEEFFECT HIT AGAIN")
+    console.warn("useEFFECT HIT AGAIN")
     axios({
       method: "get",
       url: "http://localhost:3000/gettodos"
