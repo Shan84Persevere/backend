@@ -36,4 +36,3 @@
 
 6. Create a GET request with the path "/:pet/:age" that renders `pets.ejs`.
      - In `pets.ejs`, display the pet's name and age (which are grabbed from the params and should be passed through the GET request). Attach `method.js` to log "hello world" in your browser.
-
