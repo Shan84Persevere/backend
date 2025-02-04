@@ -106,6 +106,8 @@ function App() {
     })
       .then(res => {
         console.log("$$$$$$$$", res)
+          setRender(!render)
+
       })
       .catch(err => console.log(err))
   }
@@ -122,7 +124,7 @@ function App() {
       {/* {console.log("data", data)} */}
       {/* {console.log("flag", flag)} */}
       {/* {console.log("EDIT", edit)} */}
-      {console.warn("render", render)}
+      {console.log("render", render)}
       {/* {console.log("newToDo", newToDo)} */}
       <input onChange={(e) => handleNewToDo(e)} />
 
