@@ -17,6 +17,7 @@ const ToDoSchema = new Schema(
 
         todo:
         {
+            
             type: String,
             required: true
         }

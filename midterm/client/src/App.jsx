@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import axios from 'axios'
-
 function App() {
-
   const [data, setData] = useState()
   const [flag, setFlag] = useState(false)
   const [edit, setEdit] = useState({
@@ -11,17 +9,12 @@ function App() {
   })
   const [render, setRender] = useState(false)
   const [editItemId, setEditItemId] = useState(null);
-
-
   const [newToDo, setNewToDo] = useState(
     {
       todo: "",
       created: Date.now()
     }
   )
-
-
-
   useEffect(() => {
     axios({
       method: "get",
@@ -29,30 +22,20 @@ function App() {
     })
       .then(res => {
         setData(res.data)
-
       })
       .catch(err => console.log("err", err))
-
   }, [flag, render])
-
   const handleNewToDo = (e) => {
-
-
     setNewToDo((prev) => ({
       ...prev,
       todo: e.target.value
     }))
-
-
   }
   const handleSubmit = (e) => {
-
-
     axios({
       method: "post",
       url: "http://localhost:3000/create",
       data: newToDo
-
     })
       .then(res => {
         console.log("res", res)
@@ -63,12 +46,8 @@ function App() {
         setFlag(!flag)
       })
       .catch(err => console.log(err))
-
   }
-
   const handleDelete = (e) => {
-
-
     axios({
       method: "delete",
       url: `http://localhost:3000/delete/${e.target.id}`
@@ -78,12 +57,10 @@ function App() {
       })
       .catch(err => console.log(err))
   }
-
   const handleEdit = (e) => {
     setRender(!render)
     setEditItemId(e.target.id);
   }
-
   const handleEditSubmit = (e) => {
     axios({
       method: "put",
@@ -97,20 +74,16 @@ function App() {
             if (item._id == res.data._id) {
               item.todo = res.data.todo
             }
-            return item 
+            return item
       })
     })
     setRender(!render)
   })
   .catch(err => console.log(err))
 }
-
   const handleEditChange = (e) => {
     setEdit({ todo: e.target.value })
   }
-
-
-
   return (
     <>
       <p>Mid term madness</p>
@@ -118,18 +91,12 @@ function App() {
         <input
           value={newToDo.todo}
           onChange={(e) => handleNewToDo(e)} />
-
         <button onClick={(e) => handleSubmit(e)}>New Todo</button>
       </div>
-
       {data && data.sort((a, b) => b.created - a.created).map((item) => {
         return (
-
           <div key={item._id} style={{ marginBottom: "20px" }}>
-
             <div id={item._id} style={{ border: '2px solid black' }}>
-
-
               {render && editItemId == item._id
                 ?
                 (
@@ -140,14 +107,12 @@ function App() {
                       onChange={(e) => handleEditChange(e)}
                     >
                     </input>
-
                     <button
                       id={item._id}
                       onClick={(e) => handleEditSubmit(e)}
                     >
                       Submit
                     </button>
-
                   </div>
                 )
                 :
@@ -155,19 +120,15 @@ function App() {
                   <p> {item.todo}</p>
                 )
               }
-
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <button id={item._id} onClick={(e) => handleDelete(e)}>delete</button>
                 <button id={item._id} onClick={(e) => handleEdit(e)}>edit</button>
-
               </div>
             </div>
           </div>
         )
       })}
-
     </>
   )
 }
-
 export default App
