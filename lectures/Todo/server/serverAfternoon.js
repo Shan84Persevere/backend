@@ -58,7 +58,7 @@ app.put("/edit/:id", (req, res) => {
     console.log("Edit Hit", req.params.id, req.body)
     // ToDo.findByIdAndUpdate(req.params.id, req.body, {new: true})
     //     .then(updated => {
-    //         console.log("updatead", updated)
+    //         console.log("updated", updated)
     //     })
     ToDo.findById(req.params.id)
         .then(found => {

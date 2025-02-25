@@ -12,27 +12,14 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
-
 const Schema = mongoose.Schema;
 const ToDoSchema = new Schema(
     { todo: String, created: Number }
 )
 
-//MongoDB Connection
-const uri = mongoose.connect(process.env.MONGO_URI);
 
-uri.then(() => {
-    console.log("Connected to Database")
-}) .catch((err) => {
-    console.log(err, "Error connecting to MongoDB")
-})
 
-const ToDo = mongoose.model("ToDo", ToDoSchema);
+
 
 
 //Routes
@@ -71,6 +58,10 @@ app.put("/edit/:id", (req, res) => {
         found.todo = req.body.todo
         found.save()
     })
+    .then(updated => {
+        console.log("updated", updated)
+        res.json(updated)
+    })
     .catch(err => {
         console.log(err)
     })
@@ -95,3 +86,21 @@ app.get("/test", (req, res) => {
     console.log("TEST HIT")
     res.json({ msg: "Responding to your request" })
 })
+//Start Server
+
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
+
+//MongoDB Connection
+
+const uri = mongoose.connect(process.env.MONGO_URI);
+
+uri.then(() => {
+    console.log("Connected to Database")
+}) .catch((err) => {
+    console.log(err, "Error connecting to MongoDB")
+})
+
+const ToDo = mongoose.model("ToDo", ToDoSchema);
