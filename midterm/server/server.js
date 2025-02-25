@@ -51,7 +51,7 @@ app.post("/create", (req, res) => {
 
 //Create Put
 app.put("/edit/:id", (req, res) => {
-    console.log("Edit Route HIT")
+    console.log("Edit Route HIT", req.body, req.params)
     ToDo.findById(req.params.id)
     .then(found => {
         console.log("found", found)
