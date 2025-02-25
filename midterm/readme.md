@@ -4,7 +4,7 @@ The client is completely built out for you,
 Nothing has been done to the server...
 Build a server from scratch
 Connect Mongoose
-Make your routes and logic in order to achive CRUD
+Make your routes and logic in order to achieve CRUD
 
 There should be a
 .get
@@ -12,4 +12,4 @@ There should be a
 .put
 .delete
 
-Don't forget your dependacies,  cors, dotenv, express and mongoose
+Don't forget your dependencies,  cors, dotenv, express and mongoose
